@@ -223,6 +223,19 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/dash"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:background="@drawable/bg_action"
+        android:gravity="center"
+        android:padding="@dimen/padding_8"
+        android:text="@string/dashboard"
+        android:textColor="@color/color1"
+        android:textSize="@dimen/t_size_18" />
+
+    <TextView
         android:id="@+id/action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

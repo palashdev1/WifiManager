@@ -21,6 +21,7 @@
 
 package com.hmdm.wifimanager.ui.fragments;
 
+import android.content.Intent;
 import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
@@ -48,6 +49,8 @@ import com.hmdm.wifimanager.Utils;
 import com.hmdm.wifimanager.model.Capabilities;
 import com.hmdm.wifimanager.model.WiFiItem;
 import com.hmdm.wifimanager.Presenter;
+import com.hmdm.wifimanager.ui.activities.LoginActivity;
+import com.hmdm.wifimanager.ui.activities.MainActivity;
 
 import java.util.Locale;
 import java.util.Map;
@@ -83,6 +86,7 @@ public class ParamsFragment extends Fragment implements IParamsView, View.OnClic
     @BindView(R.id.passwordVisibility) ImageView passwordVisibility;
     //@BindView(R.id.dividerPassword) LinearLayout dividerPassword;
     @BindView(R.id.action) TextView action;
+    @BindView(R.id.dash) TextView dash;
 
     public ParamsFragment() {}
 
@@ -114,6 +118,14 @@ public class ParamsFragment extends Fragment implements IParamsView, View.OnClic
 
         passwordVisibility.setOnClickListener(this);
         action.setOnClickListener(this);
+
+        dash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                ((MainActivity) getActivity()).startActivity(intent);
+            }
+        });
 
         return view;
     }
@@ -164,13 +176,20 @@ public class ParamsFragment extends Fragment implements IParamsView, View.OnClic
                     if (item.userActions) {
                         action.setText(getString(R.string.delete_network));
                         action.setVisibility(VISIBLE);
+                        dash.setVisibility(VISIBLE);
                     } else
                         action.setVisibility(GONE);
+
                 }
                 else {
                     action.setText(getString(R.string.disconnect));
                     action.setVisibility(VISIBLE);
+                    dash.setVisibility(VISIBLE);
                 }
+
+                //////////Redirect Login page..........................
+                //Log.d("Test1", "myTest");
+
             }
             else {
                 if (!capabilities.isOpen()) {
@@ -184,9 +203,9 @@ public class ParamsFragment extends Fragment implements IParamsView, View.OnClic
                 action.setText(getString(R.string.connect));
                 action.setVisibility(VISIBLE);
             }
-
             if (!action.isEnabled())
                 action.setEnabled(true);
+            /* */
         }
     }
 

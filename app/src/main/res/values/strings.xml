@@ -37,6 +37,7 @@
     <string name="ip">IP address</string>
     <string name="no">No</string>
     <string name="connect">CONNECT</string>
+    <string name="dashboard">DASHBOARD</string>
     <string name="disconnect">DISCONNECT</string>
     <string name="delete_network">FORGET</string>
     <string name="close">CLOSE</string>
